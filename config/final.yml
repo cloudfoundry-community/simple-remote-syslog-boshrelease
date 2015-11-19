@@ -1,0 +1,6 @@
+---
+blobstore:
+  provider: s3
+  options:
+    bucket_name: simple-remote-syslog-boshrelease
+final_name: simple-remote-syslog
