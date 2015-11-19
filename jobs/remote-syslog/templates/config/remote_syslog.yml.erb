@@ -1,0 +1,9 @@
+<% if_p('remote_syslog.address', 'remote_syslog.port', 'remote_syslog.protocol') do |address, port, protocol| %>
+files:
+  - /var/vcap/sys/log/*.log
+  - /var/vcap/sys/log/*/*.log
+destination:
+  host: <%= address %>
+  port: <%= port %>
+  protocol: <%= protocol %>
+<% end %>

@@ -1,0 +1,6 @@
+<% if_p('remote_syslog.address', 'remote_syslog.port', 'remote_syslog.protocol') do |address, port, protocol| %>
+check process remote-syslog with pidfile /var/vcap/sys/run/remote-syslog/remote-syslog.pid
+  group vcap
+  start program "/var/vcap/jobs/remote-syslog/bin/monit_debugger remote_syslog_ctl '/var/vcap/jobs/remote-syslog/bin/ctl start'"
+  stop program "/var/vcap/jobs/remote-syslog/bin/monit_debugger remote_syslog_ctl '/var/vcap/jobs/remote-syslog/bin/ctl stop'"
+<% end %>
