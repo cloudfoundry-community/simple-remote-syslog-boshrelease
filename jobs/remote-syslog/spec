@@ -11,12 +11,6 @@ templates:
   helpers/ctl_utils.sh: helpers/ctl_utils.sh
 
 properties:
-  remote_syslog.user:
-    description: 'User which will own the Remote Syslog services'
-    default: 'root'
-  remote_syslog.group:
-    description: 'Group which will own the Remote Syslog services'
-    default: 'vcap'
   remote_syslog.address:
     description: 'IP address for Remote Syslog'
   remote_syslog.port:
@@ -31,3 +25,9 @@ properties:
   remote_syslog.debug:
     description: 'Write a debug file'
     default: false
+  remote_syslog.user:
+    description: 'User which will own the Remote Syslog services'
+    default: 'root'
+  remote_syslog.group:
+    description: 'Group which will own the Remote Syslog services'
+    default: 'vcap'
