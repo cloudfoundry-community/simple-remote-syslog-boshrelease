@@ -1,1 +1,5 @@
---- {}
+---
+remote_syslog/remote_syslog-0.14_linux_amd64.tar.gz:
+  object_id: 8c72646f-fef5-420b-9054-a060e85ce569
+  sha: c0562f6d13e5eafece5c030c835f21fcf12fccdb
+  size: 1849384
