@@ -1,76 +1,41 @@
-# BOSH Release for simple-remote-syslog
+Simple remote-syslog release for BOSH
+=====================================
 
-## Usage
+Your BOSH VMs have lots on them and you want to ship them to a syslog endpoint. This BOSH release has a collocated job for you!
+
+Usage
+-----
 
 To use this bosh release, first upload it to your bosh:
 
 ```
-bosh target BOSH_HOST
-git clone https://github.com/cloudfoundry-community/simple-remote-syslog-boshrelease.git
-cd simple-remote-syslog-boshrelease
-bosh upload release releases/simple-remote-syslog-1.yml
+bosh upload release https://bosh.io/d/github.com/cloudfoundry-community/simple-remote-syslog-boshrelease
 ```
 
-For [bosh-lite](https://github.com/cloudfoundry/bosh-lite), you can quickly create a deployment manifest & deploy a cluster:
+Add the `simple-remote-syslog` release into your manifest:
 
-```
-templates/make_manifest warden
-bosh -n deploy
-```
-
-For AWS EC2, create a single VM:
-
-```
-templates/make_manifest aws-ec2
-bosh -n deploy
+```yaml
+releases:
+- name: simple-remote-syslog
+  version: latest
 ```
 
-### Override security groups
+For each job that you want to ship some logs add the `remote-syslog` job template to the end of the list:
 
-For AWS & Openstack, the default deployment assumes there is a `default` security group. If you wish to use a different security group(s) then you can pass in additional configuration when running `make_manifest` above.
-
-Create a file `my-networking.yml`:
-
-``` yaml
----
-networks:
-  - name: simple-remote-syslog1
-    type: dynamic
-    cloud_properties:
-      security_groups:
-        - simple-remote-syslog
+```yaml
+jobs:
+- name: router
+  instances: 1
+  templates:
+    - {name: router, release: patroni}
+    - {name: remote-syslog, release: simple-remote-syslog}
 ```
 
-Where `- simple-remote-syslog` means you wish to use an existing security group called `simple-remote-syslog`.
+Finally, document where your remote syslog endpoint is:
 
-You now suffix this file path to the `make_manifest` command:
-
+```yaml
+properties:
+  remote_syslog:
+    address: logs.papertrailapp.com
+    port: 54321
 ```
-templates/make_manifest openstack-nova my-networking.yml
-bosh -n deploy
-```
-
-### Development
-
-As a developer of this release, create new releases and upload them:
-
-```
-bosh create release --force && bosh -n upload release
-```
-
-### Final releases
-
-To share final releases:
-
-```
-bosh create release --final
-```
-
-By default the version number will be bumped to the next major number. You can specify alternate versions:
-
-
-```
-bosh create release --final --version 2.1
-```
-
-After the first release you need to contact [Dmitriy Kalinin](mailto://dkalinin@pivotal.io) to request your project is added to https://bosh.io/releases (as mentioned in README above).
