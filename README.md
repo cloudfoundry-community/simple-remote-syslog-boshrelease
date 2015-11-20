@@ -39,3 +39,15 @@ properties:
     address: logs.papertrailapp.com
     port: 54321
 ```
+
+### Options
+
+By default each log line will include the full BOSH DNS hostname (`0.redis_z1.redis1.my-redis.microbosh`). As these can get quiet long when being viewed in simple log viewers there is an option to include a shorter hostname:
+
+```yaml
+properties:
+  remote_syslog:
+    short_hostname: true
+```
+
+The `hostname` will now be in the format `0.redis_z1.my-redis`. The network name and `.microbosh` suffix are removed.

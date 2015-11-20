@@ -6,7 +6,11 @@ set -e # exit immediately if a simple command exits with a non-zero status
 source /var/vcap/jobs/remote-syslog/helpers/ctl_setup.sh 'remote-syslog'
 
 # Set the hostname
-hostname ${REMOTE_SYSLOG_HOSTNAME}
+if hostname=$(public_hostname); then
+  hostname $hostname
+else
+  hostname <%= index %>.<%= name %>.<%= spec.networks.methods(false).grep(/[^=]$/).first.to_s %>.<%= spec.deployment %>.<%= spec.dns_domain_name %>
+fi
 
 case $1 in
 
