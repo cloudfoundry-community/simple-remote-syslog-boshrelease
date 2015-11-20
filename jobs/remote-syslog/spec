@@ -31,3 +31,7 @@ properties:
   remote_syslog.group:
     description: 'Group which will own the Remote Syslog services'
     default: 'vcap'
+
+  remote_syslog.short_hostname:
+    description: 'Use an abbreviated index.job.deploymentname hostname in logs'
+    default: false

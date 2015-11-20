@@ -32,3 +32,9 @@ export REMOTE_SYSLOG_NEW_FILE_CHECK_INTERVAL="<%= p('remote_syslog.new_file_chec
 # Write a debug file
 export REMOTE_SYSLOG_DEBUG="--debug-log-cfg=${REMOTE_SYSLOG_LOG_DIR}/remote_syslog_debug.log"
 <% end %>
+
+<% if_p('remote_syslog.short_hostname') do %>
+export REMOTE_SYSLOG_HOSTNAME="<%= index %>.<%= name %>.<%= spec.deployment %>"
+<% end.else do %>
+export REMOTE_SYSLOG_HOSTNAME="<%= index %>.<%= name %>.<%= spec.networks.methods(false).grep(/[^=]$/).first.to_s %>.<%= spec.deployment %>.<%= spec.dns_domain_name %>"
+<% end %>
