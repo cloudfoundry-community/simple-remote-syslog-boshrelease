@@ -1,0 +1,20 @@
+---
+packages:
+- name: remote_syslog
+  version: d73ac00f8ea01b272989bffdbe0e9c41c491ed77
+  fingerprint: d73ac00f8ea01b272989bffdbe0e9c41c491ed77
+  sha1: d5902fb81203ce5eb2c0b621436a472dd352dd06
+  dependencies: []
+jobs:
+- name: remote-syslog
+  version: 344691d016d295296785e5fc6a94c9e1b6b2734c
+  fingerprint: 344691d016d295296785e5fc6a94c9e1b6b2734c
+  sha1: 10ef3bba77654b9baacf5607ef5cfca3bd5511cf
+license:
+  version: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  fingerprint: 8da6eb3df1dce64b78610e7cbaf4245d66e88f1c
+  sha1: e154e52782d129cf9f868cc17881568a07f77cc5
+commit_hash: 07ba7ab3
+uncommitted_changes: true
+name: simple-remote-syslog
+version: '2'
