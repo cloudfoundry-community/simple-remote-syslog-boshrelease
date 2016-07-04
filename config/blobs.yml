@@ -1,5 +1,5 @@
 ---
-remote_syslog/remote_syslog-0.17_linux_amd64.tar.gz:
-  object_id: bdc9c971-0190-4363-bb3f-eccaefa45869
-  sha: 82f9863a2223fab901cac09bec1be1c08de8d16a
-  size: 1827896
+remote_syslog/remote_syslog-0.18b1_linux_amd64.tar.gz:
+  object_id: 8bfa08f8-883f-40e0-a0c8-747c505be4d7
+  sha: dceea22cae87ae8efeee6b567c11302b556696ab
+  size: 2235259
