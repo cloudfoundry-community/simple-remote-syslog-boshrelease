@@ -5,6 +5,11 @@ set -e # exit immediately if a simple command exits with a non-zero status
 # Setup common env vars and folders
 source /var/vcap/jobs/remote-syslog/helpers/ctl_setup.sh 'remote-syslog'
 
+# reuse $REMOTE_SYSLOG_DEBUG to toggle print all commands
+if [[ "${REMOTE_SYSLOG_DEBUG}X" != "X" ]]; then
+  set -x
+fi
+
 # Set the hostname
 if hostname=$(public_hostname); then
   hostname $hostname
