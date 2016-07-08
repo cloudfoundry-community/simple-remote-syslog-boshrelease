@@ -32,7 +32,7 @@ case $1 in
         --pid-file="${PID_FILE}" \
         --hostname="${REMOTE_SYSLOG_HOSTNAME}" \
         --new-file-check-interval="${REMOTE_SYSLOG_NEW_FILE_CHECK_INTERVAL}" \
-        ${REMOTE_SYSLOG_DEBUG:-} \
+        ${REMOTE_SYSLOG_DEBUG} \
         >>${REMOTE_SYSLOG_LOG_DIR}/${OUTPUT_LABEL}.log 2>&1
     ;;
 
